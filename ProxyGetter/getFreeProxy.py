@@ -284,9 +284,19 @@ class GetFreeProxy(object):
             for proxy in proxies:
                 yield ':'.join(proxy)
 
+    @staticmethod
+    def freeProxyWallfooourth():
+        urls = ['https://ip.seofangfa.com/']
+        request = WebRequest()
+        for url in urls:
+            r = request.get(url, timeout=10)
+            proxies = re.findall(r'<td>(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})</td>[\s\S]*?<td>(\d+)</td>', r.text)
+            for proxy in proxies:
+                print(proxy)
+                yield ':'.join(proxy)
 
 if __name__ == '__main__':
-    from CheckProxy import CheckProxy
+    from ProxyGetter.CheckProxy import CheckProxy
 
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyFirst)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxySecond)
@@ -298,7 +308,8 @@ if __name__ == '__main__':
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyEight)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyNinth)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyTen)
-    CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyEleven)
+    # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyEleven)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyTwelve)
+    CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyWallfooourth)
 
     # CheckProxy.checkAllGetProxyFunc()

@@ -73,7 +73,7 @@ if [ -n "$1" ]; then
     elif [ "$1" ==  -s ]; then
     if [ -n "$pid" ]; then
         printf "\t proxyPool在运行\n"
-        ps -ef | grep forge-1.10.2-12 | egrep -v 'grep|screen|tee|SCREEN'
+        ps -ef | grep main.py | egrep -v 'grep|screen|tee|SCREEN'
     else
         printf "\t proxyPool没有运行\n"
     fi
