@@ -14,6 +14,7 @@
 import re
 import sys
 import requests
+import json
 
 sys.path.append('..')
 
@@ -246,6 +247,19 @@ class GetFreeProxy(object):
                 yield tr.xpath("./td[2]/text()")[0] + ":" + tr.xpath("./td[3]/text()")[0]
 
     @staticmethod
+    def freeProxyThirteen():
+        """
+        主要为国外代理
+        http://www.proxy-list.download
+        """
+        url = 'https://www.proxy-list.download/api/v0/get?l=en&t=http'
+        request = WebRequest()
+        r = request.get(url)
+        proxies = json.loads(r.text)[0]['LISTA']
+        for proxyDict in proxies:
+            yield proxyDict['IP'] + ":" + proxyDict['PORT']
+
+    @staticmethod
     def freeProxyWallFirst():
         """
         墙外网站 cn-proxy
@@ -292,7 +306,6 @@ class GetFreeProxy(object):
             r = request.get(url, timeout=10)
             proxies = re.findall(r'<td>(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})</td>[\s\S]*?<td>(\d+)</td>', r.text)
             for proxy in proxies:
-                print(proxy)
                 yield ':'.join(proxy)
 
 if __name__ == '__main__':
@@ -310,6 +323,7 @@ if __name__ == '__main__':
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyTen)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyEleven)
     # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyTwelve)
-    CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyWallfooourth)
+    CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyThirteen)
+    # CheckProxy.checkGetProxyFunc(GetFreeProxy.freeProxyWallfooourth)
 
     # CheckProxy.checkAllGetProxyFunc()
