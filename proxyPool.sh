@@ -1,16 +1,17 @@
 #!/bin/sh
 # 调用帮助
 # $ bash ./proxyPool.sh --help
-# 在screen中打开服务器
+# 在screen中打开ip代理池终端
 # $ bash ./proxyPool.sh -r
-# 结束现有开启的服务器
+# 结束现有开启的ip代理池终端
 # $ bash ./proxyPool.sh -kf
-# 查看服务器运行状态
+# 查看ip代理池运行状态
 # $ bash ./proxyPool.sh -s
-# 将后台的screen调至前台
+# 将后台的ip代理池screen调至前台
 # $ bash ./proxyPool.sh -f
 if [ "$1" == --help ];then
     printf " ==========================================\n"
+    printf " -r\t基于screen的一键运行脚本,使用前，确保已经安装screen\n"
     printf " -r\t如果存在proxyPool则重新启动\n"
     printf " -kf\t如果存在proxyPool则kill掉该进程\n"
     printf " -s\t查看proxyPool的状态\n"
@@ -41,7 +42,7 @@ if [ "$1" == -f ];then
 fi
 
 #查询是否已经开启proxyPool
-pid=$(ps -ef | grep forge-1.10.2-12 | egrep -v 'grep|screen|tee|SCREEN' | awk '{ printf $2}')
+pid=$(ps -ef | grep main.py | egrep -v 'grep|screen|tee|SCREEN' | awk '{ printf $2}')
 
 
 if [ -n "$1" ]; then
