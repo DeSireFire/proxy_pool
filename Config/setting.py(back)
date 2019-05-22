@@ -32,9 +32,9 @@ else:
 
 DATABASES = {
     "default": {
-        "TYPE": DB_TYPE,  # TYPE SSDB/MONGODB if use redis, only modify the host port, the type should be SSDB
-        "HOST": DB_HOST,
-        "PORT": DB_PORT,
+        "TYPE": "SSDB",  # TYPE SSDB/MONGODB if use redis, only modify the host port, the type should be SSDB
+        "HOST": "127.0.0.1",
+        "PORT": 6379,
         "NAME": "proxy",
         "PASSWORD": "DeSireFire233666888"
 
@@ -45,24 +45,23 @@ DATABASES = {
 
 PROXY_GETTER = [
     "freeProxyFirst",
-    # "freeProxySecond", # 网站已不能访问
+    "freeProxySecond",
     # "freeProxyThird",  # 网站已不能访问
     "freeProxyFourth",
     "freeProxyFifth",
     # "freeProxySixth"   # 不再提供免费代理
     "freeProxySeventh",
-    # "freeProxyEight",
-    # "freeProxyNinth",
+    # "freeProxyEight",  # 网站停用
+    # "freeProxyNinth",  # 网站停用
     "freeProxyTen",
     "freeProxyEleven",
     "freeProxyTwelve",
+    # "freeProxyThirteen",
     # foreign website, outside the wall
-    "freeProxyWallFirst",
-    "freeProxyWallSecond",
-    "freeProxyWallThird"
-    "freeProxyXiLa"
-    "freeProxyPL"
-    # "freeProxyWallSeofangfa" # 网站已不能访问
+    # "freeProxyWallFirst",
+    # "freeProxyWallSecond",
+    # "freeProxyWallThird",
+    # "freeProxyWallfooourth",
 ]
 
 # # API config http://127.0.0.1:5010
